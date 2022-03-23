@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+    }
+
+    // Regular
+    console.log("Hello World");
+
+    // Interpolated
+    console.log("Hello I am %s","Kashaan");
+
+    // Styled
+    console.log("%cHello I am Kashaan","font-size:40px;color:orange;font-family:Helvetica");
+
+    // warning!
+    console.warn("Oh No");
+
+    // Error :|
+    console.error("Shit");
+
+    // Info
+    console.info('Crocodiles eat 3-4 peoples per year');
+
+    // Testing
+    console.assert(1===1,"No it is wrong"); // console.assert only runs when the given condition is false
+    
+    // practical example of console.assert is let's say we have a <p class="one two"> tag and we want to check if it contains an "ouch" class
+    // const p = document.querySelector("p");
+    // console.assert(p.classList.contains("ouch"), "No <p> doesn't contain 'ouch' class");
+
+
+    // clearing
+    console.clear();
+
+    // Viewing DOM Elements
+    console.dir(p); // shows all of the properties and methods of p variable
+
+    // Grouping together
+    dogs.forEach(dog => {
+        console.group(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.years} old`);
+        console.log(`${dog.name} is ${dog.years * 7} dog years old`);
+        console.groupEnd(`${dog.name}`);
+    })
+
+    // counting
+    console.count(p); // counts how many times you use a word, object or DOM node etc.
+
+    // timing
+    console.time('fetching data');
+    fetch("https://api.github.com/users/Kashaan-M")
+        .then(data => data.json())
+        .then(data =>{
+            console.timeEnd('fetching data');
+            console.log(data);
+        });
+
+  </script>
+</body>
+</html>
